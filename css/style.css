@@ -1,0 +1,169 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(27, 26, 17);
+}
+
+header {
+    height: 70px;
+    margin-bottom: 40px;
+}
+
+nav {
+    background-color: rgb(248, 212, 4);
+    width: 100vw;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+nav .branch {
+    display: flex;
+    align-items: center;
+}
+
+nav .branch .logo {
+    width: 70px;
+    margin: 0px 20px;
+}
+
+nav ul li {
+    list-style: none;
+    display: inline-block;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: black;
+}
+
+nav div i {
+    margin-right: 30px;
+}
+
+h2 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: aliceblue;
+    margin-left: 40px;
+    margin-bottom: 40px;
+}
+
+section {
+    margin-bottom: 50px;
+}
+
+section h3 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: bisque;
+    margin-left: 40px;
+    margin-bottom: 30px;
+}
+
+section .card {
+    background-color: rgba(255, 255, 255, 0.05);
+    width: 350px;
+    height: 260px;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 0.5fr 2fr;
+    grid-template-areas:
+        "titulo titulo"
+        "imagen info"
+    ;
+    margin-left: 40px;
+    padding: 10px;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.8);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.card .tituloCard {
+    /* background-color: blueviolet; */
+    grid-area: titulo;
+}
+
+.card .tituloCard h3 {
+    margin: 0 15px;
+
+}
+
+.card .imagenCard {
+    /* background-color: aqua; */
+    padding: 10px;
+    grid-area: imagen;
+}
+
+.card .imagenCard img {
+    /* background-color: bisque; */
+    width: 70px;
+}
+
+.card .infoCard {
+    /* background-color: blue; */
+    color: aliceblue;
+    grid-area: info;
+}
+
+.card .infoCard p {
+    /* background-color: rgb(190, 110, 206); */
+    color: aliceblue;
+    padding: 10px;
+    font-size: 0.8rem;
+}
+
+.card .infoCard .barraCompra {
+    /* background-color: rgb(110, 110, 206); */
+    color: aliceblue;
+    padding: 10px;
+    display: flex;
+}
+
+.card .infoCard .barraCompra .agregar {
+    display: flex;
+    margin-left: 10px;
+}
+
+.card .infoCard .barraCompra .comprar {
+    border-radius: 5px;
+    box-shadow: 
+      8px 8px 16px 0 rgba(0, 0, 0, .25), /* Outset shadow */
+      inset -8px -8px 12px 0 rgba(0, 0, 0, .25), /* Dark inset shadow */
+      inset 8px 8px 12px 0 rgba(255, 255, 255, 0.4); /* Light inset shadow */
+    padding: 10px;
+    border: 0px;
+    background-color: rgb(248, 212, 4);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.card .infoCard .barraCompra .agregar button {
+    border-radius: 5px;
+    box-shadow: 
+      8px 8px 16px 0 rgba(0, 0, 0, .25), /* Outset shadow */
+      inset -8px -8px 12px 0 rgba(0, 0, 0, .25), /* Dark inset shadow */
+      inset 8px 8px 12px 0 rgba(255, 255, 255, 0.4); /* Light inset shadow */
+    width: 20px;
+    margin: 0 5px;
+    text-align: center;
+    border: 0px;
+    background-color: rgb(248, 212, 4);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.card .infoCard .barraCompra .agregar input {
+    width: 30px;
+    text-align: center;
+}
+
+.box {
+    background: rgb(249, 174, 1);
+
+  }
