@@ -5,6 +5,9 @@ let opcionesDeInicio;
 let cantidadProducto = 0;
 let formaDePago;
 let continuarCompra = false;
+let nuevoUsuario;
+let nuevaContraseña;
+let nuevoPerfil;
 
 // Array principal de productos:
 const listaProductos = [{
@@ -71,15 +74,6 @@ const listaProductos = [{
         desc: "Es un pedal de filtro...",
         cantidad: 0
     },
-    {
-        id: 11,
-        nombre: "Mask-5",
-        tipo: "Compresor",
-        precio: 15000,
-        desc: "Es un pedal de compresión...",
-        cantidad: 0
-    },
-
 ];
 
 
@@ -90,8 +84,11 @@ class Articulo {
         this.precio = precio;
         this.cantidad = cantidad;
     };
-}; // a este objeto tuve que declararlo aca arriba porque sino al utilizar el metodo .agregarAlCarrito del objeto Usuario no me guardaba los objetos Articulos en el array del usuario..
-
+};
+/*
+a este objeto tuve que declararlo aca arriba porque sino al utilizar el metodo .agregarAlCarrito del objeto
+Usuario no me guardaba los objetos Articulos en el array del usuario..
+*/
 
 class Usuario {
     constructor(id, pass) {
@@ -126,7 +123,6 @@ class Usuario {
         console.log(this.subTotal);
         alert('El total de su compra es de: $' + this.subTotal);
     };
-
 };
 
 
@@ -147,7 +143,7 @@ const seleccionDePago = () => {
                 break;
 
             case 3:
-                alert('La compra a sido cancelada');
+                alert('La compra a sido cancelada\n\nGracias por utilizar Tienda Cluster Efectos 1.4.22, BYE!');
                 opcionesDeInicio = 2;
                 break;
 
@@ -161,7 +157,7 @@ const seleccionDePago = () => {
 
 
 //Inicio del algoritmo:
-alert('Bienvenido a Tienda Cluster Efectos 1.3.22');
+alert('Bienvenido a Tienda Cluster Efectos v1.2.22');
 
 opcionesDeInicio = confirm('Desea iniciar una compra?');
 
@@ -171,14 +167,14 @@ if (opcionesDeInicio) {
 
     // INICIO Etapa de cración de Usuario.
     do {
-        nuevoUsuario = prompt('Ingrese un nuevo usuario:');
+        nuevoUsuario = prompt('Ingrese un nuevo usuario:'); // COMO PUEDO GUARDAR EL VALOR DE LA ENTRADA EN MAYUSCULAS SIEMPRE AUNQUE INGRESE MINUSCULAS??.
 
         switch (nuevoUsuario) {
             case "":
-                alert('ATENCION: Debe agregar un usuario para continuar');
+                alert('ATENCION!! Debe agregar un usuario para continuar');
                 break;
             case null:
-                alert('ATENCION: Debe agregar un usuario para continuar');
+                alert('ATENCION!! Debe agregar un usuario para continuar');
                 break;
             default:
                 break;
@@ -191,10 +187,10 @@ if (opcionesDeInicio) {
 
         switch (nuevaContraseña) {
             case "":
-                alert('ATENCION: Debe agregar una contraseña para continuar');
+                alert('ATENCION!! Debe agregar una contraseña para continuar');
                 break;
             case null:
-                alert('ATENCION: Debe agregar una contraseña para continuar');
+                alert('ATENCION!! Debe agregar una contraseña para continuar');
                 break;
             default:
                 break;
@@ -202,7 +198,7 @@ if (opcionesDeInicio) {
 
     } while (nuevaContraseña == "" || nuevaContraseña == null);
 
-    const nuevoPerfil = new Usuario(nuevoUsuario, nuevaContraseña);
+    nuevoPerfil = new Usuario(nuevoUsuario, nuevaContraseña);
 
     alert('Nuevo Usuario creado!\n' + 'US: ' + nuevoPerfil.id + '\nPASS: ' + nuevoPerfil.pass + '\nRECUERDELOS!');
 
@@ -218,5 +214,5 @@ if (opcionesDeInicio) {
     // FIN Etapa de compra.
 
 } else {
-    alert('Gracias por utilizar Tienda Cluster Efectos 1.4.22, BYE!')
+    alert('Gracias por utilizar Tienda Cluster Efectos 1.4.22, BYE!');
 };
