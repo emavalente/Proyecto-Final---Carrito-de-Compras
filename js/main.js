@@ -12,6 +12,7 @@ let nuevoPerfil;
 // Array principal de productos:
 const listaProductos = [{
         id: 1,
+        imagen: "./img/productos/chica/drives/tsunami_9/tsunami_9_frente.png",
         nombre: "Jaminabox-18",
         tipo: "Overdrive",
         precio: 15000,
@@ -20,6 +21,7 @@ const listaProductos = [{
     },
     {
         id: 2,
+        imagen: "./img/productos/chica/drives/tsunami_9/tsunami_9_frente.png",
         nombre: "Tsunami-9",
         tipo: "Overdrive",
         precio: 15000,
@@ -28,6 +30,7 @@ const listaProductos = [{
     },
     {
         id: 3,
+        imagen: "./img/productos/chica/drives/dragon_71/the_dragon_71_frente.png",
         nombre: "Dragon-71",
         tipo: "Distorsión",
         precio: 15000,
@@ -36,6 +39,7 @@ const listaProductos = [{
     },
     {
         id: 6,
+        imagen: "./img/productos/chica/modulaciones/spirit_92/spirit_92_frente.png",
         nombre: "Spirit-92",
         tipo: "Chorus",
         precio: 15000,
@@ -44,6 +48,7 @@ const listaProductos = [{
     },
     {
         id: 7,
+        imagen: "./img/productos/chica/modulaciones/pulstar_43/pulstar_43_frente.png",
         nombre: "Pulstar-43",
         tipo: "Trémolo",
         precio: 15000,
@@ -52,6 +57,7 @@ const listaProductos = [{
     },
     {
         id: 8,
+        imagen: "./img/productos/chica/modulaciones/cosmos_vibe/cosmos_vibe_13_frente.png",
         nombre: "Cosmovibe-13",
         tipo: "Modulación",
         precio: 15000,
@@ -60,6 +66,7 @@ const listaProductos = [{
     },
     {
         id: 9,
+        imagen: "./img/productos/chica/modulaciones/spiral_48/spiral_48_frente.png",
         nombre: "Spiral-48",
         tipo: "Phaser",
         precio: 15000,
@@ -68,6 +75,7 @@ const listaProductos = [{
     },
     {
         id: 10,
+        imagen: "./img/productos/chica/modulaciones/voices_2/voices_2_frente.png",
         nombre: "Voices-2",
         tipo: "Auto-Wha",
         precio: 15000,

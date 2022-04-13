@@ -5,12 +5,11 @@
 }
 
 body {
-    background-color: rgb(27, 26, 17);
+    background-color: #c0c0c0;
 }
 
 header {
     height: 70px;
-    margin-bottom: 40px;
 }
 
 nav {
@@ -22,6 +21,7 @@ nav {
     align-items: center;
     position: fixed;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    z-index: 1;
 }
 
 nav .branch {
@@ -45,125 +45,189 @@ nav ul li a {
     color: black;
 }
 
-nav div i {
-    margin-right: 30px;
+nav div button i {
+    font-size: 1.5rem;
 }
 
-h2 {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    color: aliceblue;
-    margin-left: 40px;
-    margin-bottom: 40px;
+nav div button {
+    border: none;
+    background-color: transparent;
+    width: 40px;
+    height: 40px;
+    margin: 30px;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
 }
 
-section {
-    margin-bottom: 50px;
+button i span {
+    background-color: #ffffff;
+    border-radius: 50%;
+    font-size: 10px;
+    padding: 3px;
+    position: absolute;
+    top: 0;
+    right: 1px;
 }
 
-section h3 {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    color: bisque;
-    margin-left: 40px;
-    margin-bottom: 30px;
+/* Estilo Tarjetas */
+
+.wrapper {
+    min-height: 100vh;
+    /* background-color: #f3f3f3; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Raleway', sans-serif;
 }
 
-section .card {
-    background-color: rgba(255, 255, 255, 0.05);
-    width: 350px;
-    height: 260px;
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-    grid-template-rows: 0.5fr 2fr;
-    grid-template-areas:
-        "titulo titulo"
-        "imagen info"
-    ;
-    margin-left: 40px;
-    padding: 10px;
-    overflow: hidden;
-    border-radius: 15px;
-    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.8);
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+.product {
+    width: 500px;
+    height: 250px;
+    background-color: #fff;
+    padding: 15px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 15px;
+    border: 1px solid rgba(95, 66, 66, 0.3);
+    border-radius: 5px;
+    box-shadow: 5px 15px 30px rgba(78, 95, 248, 0.3);
+    transition: 0.5s ease;
 }
 
-.card .tituloCard {
-    /* background-color: blueviolet; */
-    grid-area: titulo;
+.product:hover {
+    background: linear-gradient(to right, #f2ba00, #702e02);
+    color: #fff;
 }
 
-.card .tituloCard h3 {
-    margin: 0 15px;
-
+.product:hover div button {
+    border: 1px solid #fff;
+    color: #fff;
 }
 
-.card .imagenCard {
-    /* background-color: aqua; */
-    padding: 10px;
-    grid-area: imagen;
+.product span {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 3px 10px;
+    border-radius: 4px;
+    background-color: rgb(214, 49, 118);
+    color: #fff;
+    font-size: 12px;
 }
 
-.card .imagenCard img {
-    /* background-color: bisque; */
-    width: 70px;
+.product .prod-image {
+    flex-basis: 30%;
+    height: 100%;
+    text-align: center;
 }
 
-.card .infoCard {
-    /* background-color: blue; */
-    color: aliceblue;
-    grid-area: info;
+.prod-image img {
+    width: 70%;
+    height: 80%;
+    margin: 15px;
+    transition: 0.3s ease;
 }
 
-.card .infoCard p {
-    /* background-color: rgb(190, 110, 206); */
-    color: aliceblue;
-    padding: 10px;
+.prod-image:hover img {
+    transform: translateY(-15px);
+}
+
+.product .prod-details {
+    flex-basis: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.product .prod-details h1 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    margin-bottom: 15px;
+}
+
+.product .prod-details p {
+    margin-bottom: 15px;
     font-size: 0.8rem;
 }
 
-.card .infoCard .barraCompra {
-    /* background-color: rgb(110, 110, 206); */
-    color: aliceblue;
-    padding: 10px;
-    display: flex;
+.product .prod-details h4 i {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    margin: 15px 0px;
 }
 
-.card .infoCard .barraCompra .agregar {
-    display: flex;
-    margin-left: 10px;
-}
-
-.card .infoCard .barraCompra .comprar {
+.btn-agregar {
+    color: rgb(214, 49, 118);
+    background-color: transparent;
+    border: 1px solid rgb(214, 49, 118);
     border-radius: 5px;
-    box-shadow: 
-      8px 8px 16px 0 rgba(0, 0, 0, .25), /* Outset shadow */
-      inset -8px -8px 12px 0 rgba(0, 0, 0, .25), /* Dark inset shadow */
-      inset 8px 8px 12px 0 rgba(255, 255, 255, 0.4); /* Light inset shadow */
-    padding: 10px;
-    border: 0px;
-    background-color: rgb(248, 212, 4);
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding: 5px 18px;
+    font-size: 14px;
+    margin-right: 15px;
 }
 
-.card .infoCard .barraCompra .agregar button {
-    border-radius: 5px;
-    box-shadow: 
-      8px 8px 16px 0 rgba(0, 0, 0, .25), /* Outset shadow */
-      inset -8px -8px 12px 0 rgba(0, 0, 0, .25), /* Dark inset shadow */
-      inset 8px 8px 12px 0 rgba(255, 255, 255, 0.4); /* Light inset shadow */
-    width: 20px;
-    margin: 0 5px;
-    text-align: center;
-    border: 0px;
-    background-color: rgb(248, 212, 4);
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+/* Estilo del modal */
+
+.modal {
+    width: 40vw;
+    height: 0;
+    max-height: 300px;
+    overflow: auto;
+    background-color: rgb(221, 221, 221, 0.9);
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    position: fixed;
+    top: 70px;
+    right: 0px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
 }
 
-.card .infoCard .barraCompra .agregar input {
-    width: 30px;
-    text-align: center;
+.modal-show {
+    height: auto;
 }
 
-.box {
-    background: rgb(249, 174, 1);
+.modalCarrito {
+    width: 90%;
+}
 
-  }
+.titulo-carrito {
+    display: flex;
+    justify-content: space-around;
+    margin: 10px 0;
+}
+
+.cerrar-carrito {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.cerrar-carrito i {
+    font-size: 1rem;
+}
+
+hr {
+    margin-bottom: 10px;
+}
+
+@media screen and (max-width: 768px) {
+
+    .wrapper {
+        flex-direction: column
+    }
+
+    .product div btn-agregar {
+        padding: 7px 12px;
+        font-size: 12px;
+    }
+
+}
