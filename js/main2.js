@@ -70,26 +70,6 @@ const agregarAlCarrito = (id) => {
 
 
 // Creo una Funcion para mostrar los items que existen en el array del carrito dentro del modal.
-// const mostrarEnCarrito = () => {
-//     // Creo un elemento div con el Producto y su info dentro.
-//     const div = document.createElement('div');
-//     div.className = ('item-carrito');
-//     div.setAttribute("id", `${listaCarrito.indexOf(listaCarrito[listaCarrito.length - 1])}`); // setAttribute(type, value)
-//     div.innerHTML = `
-//             <div id="${listaCarrito[listaCarrito.length - 1].imagen}" class="img-item">
-//                 <img src="${listaCarrito[listaCarrito.length - 1].imagen}">
-//             </div>
-//             <div class="desc-item">
-//                 <p>${listaCarrito[listaCarrito.length - 1].nombre}</p>
-//                 <p>Precio: <i class="fas fa-dollar-sign">${listaCarrito[listaCarrito.length - 1].precio}</i></p>
-//                 <p>Cantidad: <span id="cantidad">${listaCarrito[listaCarrito.length - 1].cantidad}</span></p>
-//             </div>
-//             <div class="btn-item">
-//                 <button id= "btn-eliminar${listaCarrito.indexOf(listaCarrito[listaCarrito.length - 1])}" class="btn-eliminar"><i class="far fa-minus-square"></i></button>
-//             </div>
-//         `;
-
-
 const mostrarEnCarrito = () => {
     // Creo un elemento div con el Producto y su info dentro.
     const div = document.createElement('div');
@@ -109,7 +89,6 @@ const mostrarEnCarrito = () => {
                     </div>
                 `;
 
-
     contenidoCarrito.appendChild(div);
     console.log(div);
 
@@ -119,33 +98,35 @@ const mostrarEnCarrito = () => {
     btneliminar.addEventListener('click', () => {
         console.log(listaCarrito.length);
         eliminarDelCarrito(listaCarrito.length - 1);
-        console.log(listaCarrito.length - 1);
+        console.log(listaCarrito.length);
         console.log(listaCarrito);
     });
 };
 
 
 // Creo una función eliminarDelCarrito que busca el producto por su id y lo elimina del array del carrito.
+
 const eliminarDelCarrito = (indice) => {
     console.log(indice);
     // Si el producto tiene mas de una cantidad solo se resta -1 en su cantidad. Sino se elimina todo el item.
     if (listaCarrito[indice].cantidad === 1) {
-        // elimino el item encontrado del array del carrito.
+        // reinicio la cantidad a 0 y elimino el item encontrado del array del carrito.
+        listaCarrito[indice].cantidad = 0;
         listaCarrito.splice(indice, 1);
         const item = document.getElementById(indice.toString());
         item.remove();
-        console.log(item);
+        console.log(item); // El valor que devuelve sigue siendo el elemento item, me lo borro?
     } else {
-        // resto -1 a la cantidad
+        // resto -1 a la cantidad.
         listaCarrito[indice].cantidad -= 1;
     };
+    contenidoCarrito.innerHTML = ``;
     actualizarCarrito();
     console.log(listaCarrito);
-
 };
 
 
-// Creo una funcion que actualiza el carrito de ser necesario.
+// Creo una funcion que actualiza el carrito de ser necesario. EN PRUEBA!!
 const actualizarCarrito = () => {
     listaCarrito.forEach(() => {
         mostrarEnCarrito();
