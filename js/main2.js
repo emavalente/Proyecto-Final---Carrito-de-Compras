@@ -35,7 +35,7 @@ listaProductos.forEach(producto => {
     const btnAgregar = document.getElementById(`agregar${producto.id}`);
     btnAgregar.addEventListener('click', () => {
         // llamo a la función agregarAlCarrito.
-        agregarAlCarrito(producto.id) // OJO ACA: Si paso la funcion sola sin la funcion flecha me da ERROR!. en CODER dan ejemplo de poner solo la llamada a la funcion
+        agregarAlCarrito(producto.id)
     });
 });
 
@@ -49,15 +49,17 @@ btnModal.addEventListener('click', () => {
 });
 
 
+
 //DECLARACION DE FUNCIONES.
 
 // Creo una función agregarAlCarrito que busca el producto por su id y lo agrega al array del carrito.
 const agregarAlCarrito = (id) => {
-    // Recorre el array y trae el elemento que coincida con el id del producto seleccionado.
+    // Recorre el array y trae el elemento que tenga un id que coincida con el id del producto seleccionado.
     let item = listaProductos.find((producto) => producto.id === id);
-    // Si el elemento existe solo cambia su cantidad sino agrega uno nuevo.
+    // Si el elemento existe, solo cambia su cantidad sino agrega uno nuevo.
     if (listaCarrito.some((producto) => producto.id === item.id)) {
         item.cantidad += 1;
+        actualizarCarrito();
     } else {
         // Agrega el item encontrado al array del carrito y sumo 1 a la cantidad del producto.
         listaCarrito.push(item);
@@ -71,65 +73,66 @@ const agregarAlCarrito = (id) => {
 
 // Creo una Funcion para mostrar los items que existen en el array del carrito dentro del modal.
 const mostrarEnCarrito = () => {
-    // Creo un elemento div con el Producto y su info dentro.
-    const div = document.createElement('div');
-    div.className = ('item-carrito');
-    div.setAttribute("id", `${listaCarrito.length - 1}`); // setAttribute(type, value)
-    div.innerHTML = `
+    // Borro el modal para evitar duplicados.
+    modal.innerHTML = ``;
+    // Recorro el array listaCarrito y pinto cada elemento.
+    listaCarrito.forEach((producto) => {
+        const div = document.createElement('div');
+        div.className = ('item-carrito');
+        div.setAttribute("id", `item${producto.id}`); // setAttribute(type, value)
+        div.innerHTML = `
                     <div class="img-item">
-                        <img src="${listaCarrito[listaCarrito.length - 1].imagen}">
+                        <img src="${producto.imagen}">
                     </div>
                     <div class="desc-item">
-                        <p>${listaCarrito[listaCarrito.length - 1].nombre}</p>
-                        <p>Precio: <i class="fas fa-dollar-sign">${listaCarrito[listaCarrito.length - 1].precio}</i></p>
-                        <p>Cantidad: <span id="cantidad">${listaCarrito[listaCarrito.length - 1].cantidad}</span></p>
+                        <p>${producto.nombre}</p>
+                        <p>Precio: <i class="fas fa-dollar-sign">${producto.precio}</i></p>
+                        <p>Cantidad: <span id="cantidad">${producto.cantidad}</span></p>
                     </div>
                     <div class="btn-item">
-                        <button id= "btn-eliminar${listaCarrito.length - 1}" class="btn-eliminar"><i class="far fa-minus-square"></i></button>
+                        <button id= "btn-eliminar${producto.id}" class="btn-eliminar"><i class="far fa-minus-square"></i></button>
                     </div>
                 `;
 
-    contenidoCarrito.appendChild(div);
-    console.log(div);
+        contenidoCarrito.appendChild(div);
+        console.log(div);
 
-    // Le asigno un evento al boton eliminar del producto creado.
-    const btneliminar = document.getElementById(`btn-eliminar${listaCarrito.length - 1}`);
-    console.log(btneliminar);
-    btneliminar.addEventListener('click', () => {
-        console.log(listaCarrito.length);
-        eliminarDelCarrito(listaCarrito.length - 1);
-        console.log(listaCarrito.length);
-        console.log(listaCarrito);
+        // Le asigno un evento al boton eliminar de cada elemento.
+        const btneliminar = document.getElementById(`btn-eliminar${producto.id}`);
+        btneliminar.addEventListener('click', () => {
+            console.log('Ingreso a la funcion eliminar');
+            eliminarDelCarrito(producto.id);
+        });
+        console.log(listaCarrito.length - 1);
     });
 };
 
 
 // Creo una función eliminarDelCarrito que busca el producto por su id y lo elimina del array del carrito.
-
-const eliminarDelCarrito = (indice) => {
-    console.log(indice);
-    // Si el producto tiene mas de una cantidad solo se resta -1 en su cantidad. Sino se elimina todo el item.
-    if (listaCarrito[indice].cantidad === 1) {
-        // reinicio la cantidad a 0 y elimino el item encontrado del array del carrito.
-        listaCarrito[indice].cantidad = 0;
-        listaCarrito.splice(indice, 1);
-        const item = document.getElementById(indice.toString());
-        item.remove();
-        console.log(item); // El valor que devuelve sigue siendo el elemento item, me lo borro?
-    } else {
+const eliminarDelCarrito = (id) => {
+    let item = listaCarrito.find((producto) => producto.id === id);
+    let indiceDeItem = listaCarrito.indexOf(item);
+    // Si el producto tiene una cantidad mayor a 1 solo se resta -1 en su cantidad.
+    if (item.cantidad > 1) {
         // resto -1 a la cantidad.
-        listaCarrito[indice].cantidad -= 1;
+        item.cantidad -= 1;
+        actualizarCarrito();
+    } else {
+        // reinicio la cantidad a 0 y elimino el item total indicado en el array del carrito.
+        item.cantidad = 0;
+        listaCarrito.splice(indiceDeItem, 1);
+        const itemHtml = document.getElementById(`item${id}`);
+        itemHtml.remove();
+        actualizarCarrito();
     };
-    contenidoCarrito.innerHTML = ``;
-    actualizarCarrito();
-    console.log(listaCarrito);
 };
 
 
-// Creo una funcion que actualiza el carrito de ser necesario. EN PRUEBA!!
+// Creo una funcion que actualiza el carrito de ser necesario.
 const actualizarCarrito = () => {
-    listaCarrito.forEach(() => {
-        mostrarEnCarrito();
+    modal.innerHTML = ``;
+    listaCarrito.forEach((producto) => {
+        mostrarEnCarrito()
     });
 };
 

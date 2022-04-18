@@ -33,6 +33,7 @@ nav .branch {
 nav .branch .logo {
     width: 70px;
     margin: 0px 20px;
+
 }
 
 nav ul li {
@@ -101,7 +102,7 @@ button i span {
 }
 
 .product:hover {
-    background: linear-gradient(to right, #f2ba00, #702e02);
+    background: linear-gradient(to right, #ad000e, #e2c104);
     color: #fff;
 }
 
@@ -170,7 +171,7 @@ button i span {
     border-radius: 5px;
     padding: 5px 18px;
     font-size: 14px;
-
+    cursor: pointer;
 }
 
 /* Estilo del modal */
