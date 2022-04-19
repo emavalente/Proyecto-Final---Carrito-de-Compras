@@ -3,7 +3,7 @@ let contador = 0;
 
 const contenedor = document.getElementById('contProductos');
 const modal = document.getElementById('contenidoCarrito');
-const contadorItems = document.getElementById('contador');
+
 
 
 // MOSTRAR PRODUCTOS EN PANTALLA: Recorro el array y por cada objeto pinto la card dentro del main html.
@@ -40,6 +40,7 @@ listaProductos.forEach(producto => {
 });
 
 
+
 // MOSTRAR Y OCULTAR EL MODAL:
 const btnModal = document.getElementById('btn-carrito');
 const ventanaModal = document.getElementById('modal');
@@ -67,7 +68,8 @@ const agregarAlCarrito = (id) => {
         // Muestro el item en el modal.
         mostrarEnCarrito();
     };
-    console.log(listaCarrito);
+    // Muestro la cantidad de productos.
+    contadorCarrito();
 };
 
 
@@ -125,6 +127,8 @@ const eliminarDelCarrito = (id) => {
         itemHtml.remove();
         actualizarCarrito();
     };
+    // Muestro la cantidad de productos.
+    contadorCarrito();
 };
 
 
@@ -137,6 +141,10 @@ const actualizarCarrito = () => {
 };
 
 
-// cuento la cantidad de items del carrito. ¡¡¡TODAVIA NO FUNCIONA!!!
-// contador = listaCarrito.reduce((acc, el) => acc + el.cantidad, 0);
-// contadorItems.innerText = contador;
+// Creo una funcion que cuenta la cantidad de items agregados al carrito. ¡¡¡TODAVIA NO FUNCIONA!!!
+const contadorCarrito = () => {
+    const contadorItems = document.getElementById('contador');
+    //Recorro el array del carrito y sumo todas las cantidades.
+    contador = listaCarrito.reduce((acc, el) => acc + el.cantidad, 0);
+    contadorItems.innerText = contador;
+};
