@@ -191,7 +191,8 @@ const vaciarCarrito = () => {
 
 // Creo una funcion que guarda el carrito en Storage.
 const guardarCarrito = () => {
-    localStorage.setItem('carrito', listaCarrito); //No me esta funcionando lo de Storage.
+    const nubeCarrito = JSON.stringify(listaCarrito); // GUARDA EN EL STORAGE PERO NO PUDE HACER QUE AL ACUTALIZAR RECUPERE LOS DATOS.
+    localStorage.setItem('carrito', nubeCarrito);
 };
 
 
