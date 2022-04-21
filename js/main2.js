@@ -1,10 +1,13 @@
+// DECLARACION DE VARIABLES.
+
 let listaCarrito = [];
 let contador = 0;
+let subTotal = 0;
 
 const contenedor = document.getElementById('contProductos');
 const modal = document.getElementById('contenidoCarrito');
-
-
+const documento = document.getElementsByTagName('main');
+console.log(documento)
 
 // MOSTRAR PRODUCTOS EN PANTALLA: Recorro el array y por cada objeto pinto la card dentro del main html.
 listaProductos.forEach(producto => {
@@ -40,17 +43,6 @@ listaProductos.forEach(producto => {
 });
 
 
-
-// MOSTRAR Y OCULTAR EL MODAL:
-const btnModal = document.getElementById('btn-carrito');
-const ventanaModal = document.getElementById('modal');
-
-btnModal.addEventListener('click', () => {
-    ventanaModal.classList.toggle('modal-show'); // toggle intercambia entre clases.
-});
-
-
-
 //DECLARACION DE FUNCIONES.
 
 // Creo una función agregarAlCarrito que busca el producto por su id y lo agrega al array del carrito.
@@ -70,6 +62,8 @@ const agregarAlCarrito = (id) => {
     };
     // Muestro la cantidad de productos.
     contadorCarrito();
+    calcularSubTotal();
+    guardarCarrito()
 };
 
 
@@ -96,7 +90,7 @@ const mostrarEnCarrito = () => {
                     </div>
                 `;
 
-        contenidoCarrito.appendChild(div);
+        modal.appendChild(div);
         console.log(div);
 
         // Le asigno un evento al boton eliminar de cada elemento.
@@ -129,10 +123,11 @@ const eliminarDelCarrito = (id) => {
     };
     // Muestro la cantidad de productos.
     contadorCarrito();
+    guardarCarrito();
 };
 
 
-// Creo una funcion que actualiza el carrito de ser necesario.
+// Creo una función que actualiza el carrito de ser necesario.
 const actualizarCarrito = () => {
     modal.innerHTML = ``;
     listaCarrito.forEach((producto) => {
@@ -141,10 +136,77 @@ const actualizarCarrito = () => {
 };
 
 
-// Creo una funcion que cuenta la cantidad de items agregados al carrito. ¡¡¡TODAVIA NO FUNCIONA!!!
+// Creo una función que cuenta la cantidad de items agregados al carrito.
 const contadorCarrito = () => {
     const contadorItems = document.getElementById('contador');
     //Recorro el array del carrito y sumo todas las cantidades.
     contador = listaCarrito.reduce((acc, el) => acc + el.cantidad, 0);
     contadorItems.innerText = contador;
 };
+
+// Creo una función que calcula el costo total del carrito.
+const calcularSubTotal = () => {
+    subTotal = listaCarrito.reduce((acc, el) => acc + (el.cantidad * el.precio), 0);
+    console.log(subTotal);
+};
+
+
+// Creo una función para vaciar el carrito.
+const vaciarCarrito = () => {
+    // Creo el modal "mensaje" que uso como alert.
+    // const mensaje = document.createElement('div');
+    // mensaje.classList.add('modalAlert');
+    // mensaje.innerHTML = `
+    //     <h3 class="tituloAlert">Atencion!</h3>
+    //     <p id="mensajeAlert" class="mensajeAlert"></p>
+    //     <button id="aceptarAlert" class="aceptarAlert">Aceptar</button>
+    //     `
+    // documento.appendChild(mensaje);
+    // // asigno un evento al boton "aceptar" del mensaje.
+    // const btnAceptar = getElementById('aceptarAlert');
+    // btnAceptar.addEventListener('click', () => {
+    //     mensaje.classList.toggle('modalAlert-show');
+    //     mensaje.remove();
+    // });
+
+    // const texto = document.getElementById('mensajeAlert');
+
+    // Condiciono el estado del array listaCarrito.
+    if (listaCarrito.length > 0) {
+        listaCarrito = [];
+        actualizarCarrito();
+        contadorCarrito();
+        alert('El carrito ha sido vaciado')
+        // aca aparece el modalAlert.
+        //mensaje.classList.toggle('modalAlert-show');
+        //texto.innerText('El carrito ha sido vaciado');
+        console.log(listaCarrito);
+    } else {
+        alert('El carrito no contiene productos');
+        // aca aparece el modalAlert.
+        //mensaje.classList.toggle('modalAlert-show');
+        //texto.innerText('El carrito no contiene productos');
+    }
+};
+
+// Creo una funcion que guarda el carrito en Storage.
+const guardarCarrito = () => {
+    localStorage.setItem('carrito', listaCarrito); //No me esta funcionando lo de Storage.
+};
+
+
+
+// ACCIONES DEL MODAL CARRITO:
+
+//Muestra y oculta el modal Carrito.
+const btnModal = document.getElementById('btn-carrito');
+const ventanaModal = document.getElementById('modal');
+
+btnModal.addEventListener('click', () => {
+    ventanaModal.classList.toggle('modal-show'); // toggle intercambia entre clases.
+});
+
+
+//Vaciar el modal Carrito.
+const btnVaciar = document.getElementById('btn-vaciar');
+btnVaciar.addEventListener('click', vaciarCarrito);

@@ -88,7 +88,7 @@ button i span {
 .product {
     width: 500px;
     height: 250px;
-    background-color: #fff;
+    background-color: #fafafa;
     padding: 15px;
     position: relative;
     display: flex;
@@ -129,8 +129,7 @@ button i span {
 }
 
 .prod-image img {
-    width: 70%;
-    height: 80%;
+    width: 80%;
     margin: 15px;
     transition: 0.3s ease;
 }
@@ -178,9 +177,8 @@ button i span {
 
 .modal {
     width: 30vw;
-    height: 0;
-    max-height: 300px;
-    background-color: rgb(221, 221, 221, 0.9);
+    max-height: 0;
+    background-color: rgb(250, 250, 250, 0.9);
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
     position: fixed;
@@ -191,13 +189,13 @@ button i span {
     flex-direction: column;
     align-items: center;
     overflow: auto;
-    transition: 0.5s ease;
+    transition: max-height 0.3s linear;
 
 }
 
 .modal-show {
-    height: 700px;
-    transition: 0.8s ease;
+    max-height: 300px;
+    transition: max-height 0.3s linear;
 }
 
 .modalCarrito {
@@ -277,6 +275,43 @@ hr {
     width: 90%;
     margin-bottom: 20px;
 }
+
+.modalAlert {
+    width: 400px;
+    height: 150px;
+    padding: 20px;
+    background-color: #fafafa;
+    border-radius: 5px;
+    border: 1px solid rgb(197, 196, 196);
+    box-shadow: 5px 15px 30px rgba(78, 95, 248, 0.3);
+    color: #000000;
+    position: absolute;
+    top: 20vh;
+    left: 50vw;
+    transform: translateX(-50%);
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    display: none;
+}
+
+.modalAlert-show {
+    display: flex;
+}
+
+.modalAlert .aceptarAlert {
+    align-self: flex-end;
+    background-color: rgb(214, 49, 118);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    color: #fff;
+
+}
+
+
 
 @media screen and (max-width: 768px) {
 
