@@ -3,14 +3,17 @@
 let listaCarrito = [];
 let contador = 0;
 let subTotal = 0;
+let nubeCarrito;
+let nubeRecuperada;
 
 const contenedor = document.getElementById('contProductos');
 const modal = document.getElementById('contenidoCarrito');
 const documento = document.getElementsByTagName('main');
 console.log(documento)
 
-// MOSTRAR PRODUCTOS EN PANTALLA: Recorro el array y por cada objeto pinto la card dentro del main html.
-listaProductos.forEach(producto => {
+
+
+listaProductos.forEach((producto) => {
     //Creo el elemento div para la card.
     const div = document.createElement('div');
     // Le asigno una clase 'product'
@@ -42,6 +45,7 @@ listaProductos.forEach(producto => {
     });
 });
 
+recuperarCarrito();
 
 //DECLARACION DE FUNCIONES.
 
@@ -144,7 +148,8 @@ const contadorCarrito = () => {
     contadorItems.innerText = contador;
 };
 
-// Creo una función que calcula el costo total del carrito.
+
+// Creo una función que calcula el costo total del carrito. FALTA ESTO!
 const calcularSubTotal = () => {
     subTotal = listaCarrito.reduce((acc, el) => acc + (el.cantidad * el.precio), 0);
     console.log(subTotal);
@@ -153,47 +158,42 @@ const calcularSubTotal = () => {
 
 // Creo una función para vaciar el carrito.
 const vaciarCarrito = () => {
-    // Creo el modal "mensaje" que uso como alert.
-    // const mensaje = document.createElement('div');
-    // mensaje.classList.add('modalAlert');
-    // mensaje.innerHTML = `
-    //     <h3 class="tituloAlert">Atencion!</h3>
-    //     <p id="mensajeAlert" class="mensajeAlert"></p>
-    //     <button id="aceptarAlert" class="aceptarAlert">Aceptar</button>
-    //     `
-    // documento.appendChild(mensaje);
-    // // asigno un evento al boton "aceptar" del mensaje.
-    // const btnAceptar = getElementById('aceptarAlert');
-    // btnAceptar.addEventListener('click', () => {
-    //     mensaje.classList.toggle('modalAlert-show');
-    //     mensaje.remove();
-    // });
-
-    // const texto = document.getElementById('mensajeAlert');
-
     // Condiciono el estado del array listaCarrito.
     if (listaCarrito.length > 0) {
+        // Reinicio el array del carrito.
         listaCarrito = [];
+        // Actualizo el modal del carrito.
         actualizarCarrito();
+        // Reinicio el contador del carrito.
         contadorCarrito();
+        // Limpio el localStorage.
+        localStorage.clear();
         alert('El carrito ha sido vaciado')
-        // aca aparece el modalAlert.
-        //mensaje.classList.toggle('modalAlert-show');
-        //texto.innerText('El carrito ha sido vaciado');
         console.log(listaCarrito);
     } else {
         alert('El carrito no contiene productos');
-        // aca aparece el modalAlert.
-        //mensaje.classList.toggle('modalAlert-show');
-        //texto.innerText('El carrito no contiene productos');
     }
 };
 
+
+// GUARDAR Y RECUPERAR DATOS EN STORAGE.
+
 // Creo una funcion que guarda el carrito en Storage.
 const guardarCarrito = () => {
-    const nubeCarrito = JSON.stringify(listaCarrito); // GUARDA EN EL STORAGE PERO NO PUDE HACER QUE AL ACUTALIZAR RECUPERE LOS DATOS.
+    nubeCarrito = JSON.stringify(listaCarrito);
     localStorage.setItem('carrito', nubeCarrito);
 };
+
+
+// Creo una función que recupera los datos del Storage.
+const recuperarCarrito = () => {
+    nubeRecuperada = localStorage.getItem('carrito');
+    listaCarrito = JSON.parse(nubeRecuperada);
+    mostrarEnCarrito();
+    contadorCarrito();
+};
+
+// MOSTRAR PRODUCTOS EN PANTALLA: Recorro el array y por cada objeto pinto la card dentro del main html.
 
 
 
@@ -202,7 +202,7 @@ const guardarCarrito = () => {
 //Muestra y oculta el modal Carrito.
 const btnModal = document.getElementById('btn-carrito');
 const ventanaModal = document.getElementById('modal');
-
+//Mostrar y Ocultar modal Carrito.
 btnModal.addEventListener('click', () => {
     ventanaModal.classList.toggle('modal-show'); // toggle intercambia entre clases.
 });
