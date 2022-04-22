@@ -9,10 +9,8 @@ let nubeRecuperada;
 const contenedor = document.getElementById('contProductos');
 const modal = document.getElementById('contenidoCarrito');
 const documento = document.getElementsByTagName('main');
-console.log(documento)
 
-
-
+// MOSTRAR PRODUCTOS EN PANTALLA: Recorro el array y por cada objeto pinto la card dentro del main html.
 listaProductos.forEach((producto) => {
     //Creo el elemento div para la card.
     const div = document.createElement('div');
@@ -45,7 +43,6 @@ listaProductos.forEach((producto) => {
     });
 });
 
-recuperarCarrito();
 
 //DECLARACION DE FUNCIONES.
 
@@ -68,8 +65,16 @@ const agregarAlCarrito = (id) => {
     contadorCarrito();
     calcularSubTotal();
     guardarCarrito()
+    console.log(listaCarrito);
 };
 
+// Creo una función que cuenta la cantidad de items agregados al carrito.
+const contadorCarrito = () => {
+    const contadorItems = document.getElementById('contador');
+    //Recorro el array del carrito y sumo todas las cantidades.
+    contador = listaCarrito.reduce((acc, el) => acc + el.cantidad, 0);
+    contadorItems.innerText = contador;
+};
 
 // Creo una Funcion para mostrar los items que existen en el array del carrito dentro del modal.
 const mostrarEnCarrito = () => {
@@ -100,13 +105,12 @@ const mostrarEnCarrito = () => {
         // Le asigno un evento al boton eliminar de cada elemento.
         const btneliminar = document.getElementById(`btn-eliminar${producto.id}`);
         btneliminar.addEventListener('click', () => {
-            console.log('Ingreso a la funcion eliminar');
             eliminarDelCarrito(producto.id);
+            calcularSubTotal();
         });
         console.log(listaCarrito.length - 1);
     });
 };
-
 
 // Creo una función eliminarDelCarrito que busca el producto por su id y lo elimina del array del carrito.
 const eliminarDelCarrito = (id) => {
@@ -130,7 +134,6 @@ const eliminarDelCarrito = (id) => {
     guardarCarrito();
 };
 
-
 // Creo una función que actualiza el carrito de ser necesario.
 const actualizarCarrito = () => {
     modal.innerHTML = ``;
@@ -139,22 +142,13 @@ const actualizarCarrito = () => {
     });
 };
 
-
-// Creo una función que cuenta la cantidad de items agregados al carrito.
-const contadorCarrito = () => {
-    const contadorItems = document.getElementById('contador');
-    //Recorro el array del carrito y sumo todas las cantidades.
-    contador = listaCarrito.reduce((acc, el) => acc + el.cantidad, 0);
-    contadorItems.innerText = contador;
-};
-
-
 // Creo una función que calcula el costo total del carrito. FALTA ESTO!
 const calcularSubTotal = () => {
     subTotal = listaCarrito.reduce((acc, el) => acc + (el.cantidad * el.precio), 0);
     console.log(subTotal);
+    const totalModal = document.getElementById('subtotal-compra');
+    totalModal.innerText = subTotal;
 };
-
 
 // Creo una función para vaciar el carrito.
 const vaciarCarrito = () => {
@@ -166,6 +160,8 @@ const vaciarCarrito = () => {
         actualizarCarrito();
         // Reinicio el contador del carrito.
         contadorCarrito();
+        // Reinicio el subTotal
+        calcularSubTotal();
         // Limpio el localStorage.
         localStorage.clear();
         alert('El carrito ha sido vaciado')
@@ -176,25 +172,19 @@ const vaciarCarrito = () => {
 };
 
 
-// GUARDAR Y RECUPERAR DATOS EN STORAGE.
-
+// GUARDAR Y RECUPERAR DATOS DEL STORAGE
 // Creo una funcion que guarda el carrito en Storage.
 const guardarCarrito = () => {
     nubeCarrito = JSON.stringify(listaCarrito);
     localStorage.setItem('carrito', nubeCarrito);
 };
 
-
 // Creo una función que recupera los datos del Storage.
 const recuperarCarrito = () => {
     nubeRecuperada = localStorage.getItem('carrito');
+    console.log(nubeRecuperada);
     listaCarrito = JSON.parse(nubeRecuperada);
-    mostrarEnCarrito();
-    contadorCarrito();
 };
-
-// MOSTRAR PRODUCTOS EN PANTALLA: Recorro el array y por cada objeto pinto la card dentro del main html.
-
 
 
 // ACCIONES DEL MODAL CARRITO:
@@ -206,7 +196,6 @@ const ventanaModal = document.getElementById('modal');
 btnModal.addEventListener('click', () => {
     ventanaModal.classList.toggle('modal-show'); // toggle intercambia entre clases.
 });
-
 
 //Vaciar el modal Carrito.
 const btnVaciar = document.getElementById('btn-vaciar');

@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Google Fonts -->
     <link
-        href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;500;700;800&family=Roboto:wght@500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;500;700;800&family=Roboto:wght@500;600;700;900&display=swap"
         rel="stylesheet">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
@@ -15,7 +15,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Inserción CSS -->
     <link rel="stylesheet" href="./css/style.css">
-    <title>Proyecto Final Javascript - Carrito de Compras</title>
+    <title>Proyecto Final - Tienda Cluster</title>
 </head>
 
 <body>
@@ -27,19 +27,44 @@
             </div>
             <ul>
                 <li><a href="./index.html">Inicio</a></li>
-                <li><a href="./carrito.html">Carrito de Compras</a></li>
             </ul>
             <div>
-
+                <!-- <i class="fa-solid fa-user-large"></i> -->
                 <button id="btn-carrito"><i class="fa-solid fa-cart-shopping"><span id="contador">0</span></i></button>
             </div>
         </nav>
     </header>
     <main>
-        <h2>Bienvenidos a la tienda <span>CLUSTER</span></h2>
+        <div id="contProductos" class="wrapper">
+            <!-- Aqui se agregan las cards mediante javascript -->
+        </div>
+
+        <div id="modal" class="modal">
+            <div class="modalCarrito">
+                <div class="titulo-carrito">
+                    <h3>Lista de Productos</h3>
+                </div>
+                <hr>
+                <div id="contenidoCarrito">
+                    <!-- Aqui se agrega la lista del carrito mediante javascript -->
+                </div>
+                <p class="precio-total">Precio total: <i id="subtotal-compra" class="fas fa-dollar-sign">0</i></p>
+                <div class="botonesModal">
+                    <button id="btn-vaciar" class="btn-agregar btn-modal">Vaciar Carrito</button>
+                    <button id="btn-comprar" class="btn-agregar btn-modal">Comprar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div id="modalAlert" class="modalAlert">
+
+        </div> -->
     </main>
-    <footer></footer>
-    <!-- <script src="./js/main.js"></script> -->
+
+    <!-- Insersión Javascript -->
+    <script src="./js/productos.js"></script>
+    <script src="./js/main2.js"></script>
+
 </body>
 
 </html>

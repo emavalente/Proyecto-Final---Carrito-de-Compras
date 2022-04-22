@@ -176,7 +176,7 @@ button i span {
 /* Estilo del modal */
 
 .modal {
-    width: 30vw;
+    width: 25vw;
     max-height: 0;
     background-color: rgb(250, 250, 250, 0.9);
     border-bottom-right-radius: 5px;
@@ -271,44 +271,13 @@ hr {
     margin-bottom: 20px;
 }
 
-.modal .modalCarrito .btn-vaciar {
-    width: 90%;
-    margin-bottom: 20px;
-}
-
-.modalAlert {
-    width: 400px;
-    height: 150px;
-    padding: 20px;
-    background-color: #fafafa;
-    border-radius: 5px;
-    border: 1px solid rgb(197, 196, 196);
-    box-shadow: 5px 15px 30px rgba(78, 95, 248, 0.3);
-    color: #000000;
-    position: absolute;
-    top: 20vh;
-    left: 50vw;
-    transform: translateX(-50%);
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-    display: none;
-}
-
-.modalAlert-show {
+.modalCarrito .botonesModal {
     display: flex;
 }
 
-.modalAlert .aceptarAlert {
-    align-self: flex-end;
-    background-color: rgb(214, 49, 118);
-    border: none;
-    padding: 8px 16px;
-    border-radius: 5px;
-    color: #fff;
-
+.modalCarrito .botonesModal .btn-modal {
+    width: 50%;
+    margin: 20px;
 }
 
 
