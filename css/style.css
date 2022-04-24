@@ -149,7 +149,7 @@ button i span {
 .product .prod-details h1 {
     font-family: 'Roboto', sans-serif;
     font-weight: 900;
-    margin-bottom: 15px;
+
 }
 
 .product .prod-details p {
@@ -280,7 +280,44 @@ hr {
     margin: 20px;
 }
 
+footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 50px 0;
+}
 
+footer .redes {
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    margin-bottom: 30px;
+}
+
+footer .redes li {
+    display: flex;
+    align-items: center;
+
+}
+
+.redes li img {
+    width: 25px;
+}
+
+.redes li a {
+    text-decoration: none;
+    color: #333232;
+    font-family: 'Roboto';
+    margin-left: 10px;
+}
+
+footer p {
+    color: #333232;
+    font-size: 0.7rem;
+    font-family: 'Raleway', sans-serif;
+}
 
 @media screen and (max-width: 768px) {
 
