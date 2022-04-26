@@ -124,10 +124,23 @@ const vaciarCarrito = () => {
         calcularSubTotal();
         // Limpio el localStorage.
         localStorage.clear();
-        alert('El carrito ha sido vaciado')
+        Swal.fire({
+            title: 'Vaciaste el Carrito',
+            text: 'Todos tus productos se han quitado',
+            icon: 'success',
+            backdrop: true,
+            allowOutsideClick: false,
+            confirmButtonText: 'OK'
+        })
         console.log(listaCarrito);
     } else {
-        alert('El carrito no contiene productos');
+        Swal.fire({
+            title: 'Atención',
+            text: 'El carrito no contiene productos',
+            icon: 'warning',
+            showConfirmButton: false,
+            timer: '3000'
+        })
     }
 };
 
