@@ -6,7 +6,7 @@
 
 body {
     background-color: #c0c0c0;
-    width: 100vw;
+
 }
 
 header {
@@ -15,7 +15,7 @@ header {
 
 nav {
     background-color: rgb(248, 212, 4);
-    width: 100vw;
+    width: 100%;
     height: 70px;
     display: flex;
     justify-content: space-around;
@@ -25,30 +25,19 @@ nav {
     z-index: 1;
 }
 
+nav h1 {
+    font-size: clamp(0.5rem, 4vw, 1.8rem);
+}
+
 nav .branch {
     display: flex;
     align-items: center;
 }
 
 nav .branch .logo {
-    width: 70px;
+    width: 60px;
     margin: 0px 20px;
 
-}
-
-nav ul li {
-    list-style: none;
-    display: inline-block;
-    margin-right: 20px;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: black;
-}
-
-nav div button i {
-    font-size: 1.5rem;
 }
 
 nav div button {
@@ -62,11 +51,18 @@ nav div button {
     position: relative;
 }
 
+button i {
+    font-size: 1.5rem;
+    transition: all 0.3s;
+}
+
+
 button i span {
+    padding: 3px;
     background-color: #ffffff;
     border-radius: 50%;
     font-size: 10px;
-    padding: 3px;
+    color: #000;
     position: absolute;
     top: 0;
     right: 1px;
@@ -76,7 +72,7 @@ button i span {
 
 .wrapper {
     min-height: 100vh;
-    width: 100vw;
+    width: 100%;
     /* background-color: #f3f3f3; */
     display: flex;
     flex-wrap: wrap;
@@ -86,8 +82,9 @@ button i span {
 }
 
 .product {
-    width: 500px;
-    height: 250px;
+    width: 90%;
+    max-width: 500px;
+    height: auto;
     background-color: #fafafa;
     padding: 15px;
     position: relative;
@@ -98,17 +95,7 @@ button i span {
     border: 1px solid rgba(95, 66, 66, 0.3);
     border-radius: 5px;
     box-shadow: 5px 15px 30px rgba(78, 95, 248, 0.3);
-    transition: 0.5s ease;
-}
-
-.product:hover {
-    background: linear-gradient(to right, #ad000e, #e2c104);
-    color: #fff;
-}
-
-.product:hover div button {
-    border: 1px solid #fff;
-    color: #fff;
+    transition: linear-gradient 1s ease;
 }
 
 .product span {
@@ -119,23 +106,27 @@ button i span {
     border-radius: 4px;
     background-color: rgb(214, 49, 118);
     color: #fff;
-    font-size: 12px;
+    font-size: clamp(0.3rem, 2vw, 0.7rem);
 }
 
 .product .prod-image {
-    flex-basis: 30%;
-    height: 100%;
-    text-align: center;
+    flex-basis: 40%;
+    height: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+
 }
 
 .prod-image img {
-    width: 80%;
-    margin: 15px;
+    width: 70%;
+    /* margin: 15px; */
     transition: 0.3s ease;
+    text-align: center;
 }
 
 .prod-image:hover img {
-    transform: translateY(-15px);
+    transform: translateY(-10px);
 }
 
 .product .prod-details {
@@ -149,16 +140,18 @@ button i span {
 .product .prod-details h1 {
     font-family: 'Roboto', sans-serif;
     font-weight: 900;
+    font-size: clamp(1rem, 4vw, 1.5rem);
 
 }
 
 .product .prod-details p {
     margin-bottom: 15px;
-    font-size: 0.8rem;
+    font-size: clamp(0.6rem, 3vw, 0.8rem);
 }
 
 .product .prod-details h4 i {
     font-family: 'Roboto', sans-serif;
+    font-size: clamp(1rem, 3vw, 1.5rem);
     font-weight: 900;
     margin: 15px 0px;
 }
@@ -176,8 +169,9 @@ button i span {
 /* Estilo del modal */
 
 .modal {
-    width: 25vw;
-    max-height: 0;
+    width: 100vw;
+    max-width: 500px;
+    height: 0;
     background-color: rgb(250, 250, 250, 0.9);
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
@@ -189,13 +183,13 @@ button i span {
     flex-direction: column;
     align-items: center;
     overflow: auto;
-    transition: max-height 0.3s linear;
+    transition: height 0.2s linear;
 
 }
 
 .modal-show {
-    max-height: 300px;
-    transition: max-height 0.3s linear;
+    height: 100vh;
+    transition: height 0.2s linear;
 }
 
 .modalCarrito {
@@ -269,6 +263,7 @@ hr {
 
 .modal .modalCarrito .precio-total {
     margin-bottom: 20px;
+    font-family: 'Roboto', sans-serif;
 }
 
 .modalCarrito .botonesModal {
@@ -281,6 +276,7 @@ hr {
 }
 
 footer {
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -289,9 +285,8 @@ footer {
 }
 
 footer .redes {
-    width: 300px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     list-style: none;
     margin-bottom: 30px;
 }
@@ -299,7 +294,7 @@ footer .redes {
 footer .redes li {
     display: flex;
     align-items: center;
-
+    margin: 20px
 }
 
 .redes li img {
@@ -314,15 +309,34 @@ footer .redes li {
 }
 
 footer p {
-    color: #333232;
+    color: #333332;
     font-size: 0.7rem;
     font-family: 'Raleway', sans-serif;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 500px) {
+
+    button:hover i {
+        font-size: 1.8rem;
+        color: #554808;
+    }
 
     .wrapper {
-        flex-direction: column
+        flex-direction: row;
+    }
+
+    .product {
+        height: 250px;
+    }
+
+    .product:hover {
+        background-color: #1d1b1b;
+        color: #fff;
+    }
+
+    .product:hover div button {
+        border: 1px solid #fff;
+        color: #fff;
     }
 
     .product div btn-agregar {
