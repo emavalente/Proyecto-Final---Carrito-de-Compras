@@ -275,6 +275,10 @@ hr {
     margin: 20px;
 }
 
+.carrito-show {
+    display: none;
+}
+
 footer {
     width: 100%;
     display: flex;
@@ -327,11 +331,23 @@ footer p {
 
     .product {
         height: 250px;
+        transition: all 0.5s;
     }
 
     .product:hover {
         background-color: #1d1b1b;
+    }
+
+    .product:hover p {
         color: #fff;
+    }
+
+    .product:hover i {
+        color: #fff;
+    }
+
+    .product:hover h1 {
+        color: rgb(214, 49, 118);
     }
 
     .product:hover div button {

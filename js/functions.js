@@ -4,14 +4,19 @@
 const agregarAlCarrito = (id) => {
     // Recorre el array y trae el elemento que tenga un id que coincida con el id del producto seleccionado.
     let item = listaProductos.find((producto) => producto.id === id);
-    // Si el elemento existe, solo cambia su cantidad sino agrega uno nuevo.
-    if (listaCarrito.some((producto) => producto.id === item.id)) {
-        item.cantidad++;
+    console.log(item);
+    // Busco en el carrito si existe un elemento de id igual al que saque de listaProductos.
+    let itemCarrito = listaCarrito.find((producto) => producto.id === item.id);
+    console.log(itemCarrito);
+    // Si el elemento existe en el carrito, solo cambia su cantidad y sino agrega uno nuevo.
+    if (itemCarrito) {
+        itemCarrito.cantidad++;
         actualizarCarrito();
     } else {
-        // Agrega el item encontrado al array del carrito y sumo 1 a la cantidad del producto.
+        // Agrega el item nuevo al array del carrito y sumo 1 a la cantidad del producto.
         listaCarrito.push(item);
-        item.cantidad++;
+        itemCarrito = listaCarrito.find((producto) => producto.id === id);
+        itemCarrito.cantidad++;
         // Muestro el item en el modal.
         mostrarEnCarrito();
     };
@@ -20,6 +25,7 @@ const agregarAlCarrito = (id) => {
     calcularSubTotal();
     guardarCarrito()
     console.log(listaCarrito);
+    console.log(listaProductos);
 };
 
 // Creo una función que cuenta la cantidad de items agregados al carrito.

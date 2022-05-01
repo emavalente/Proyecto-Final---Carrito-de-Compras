@@ -6,10 +6,83 @@ let subTotal = 0;
 let nubeCarrito;
 let nubeRecuperada;
 
+
+// ACCIONES DEL MODAL CARRITO:
+const btnModal = document.getElementById('btn-carrito');
+const ventanaModal = document.getElementById('modal');
+
+//Mostrar y ocultar el modal Carrito.
+btnModal.addEventListener('click', () => {
+    ventanaModal.classList.toggle('modal-show'); // toggle intercambia entre clases.
+});
+
+//Armado Inicial del Modal.
+const div = document.createElement('div');
+div.className = 'modalCarrito';
+div.innerHTML = `
+    <div class="titulo-carrito">
+        <h3>Lista de Productos</h3>
+    </div>
+    <hr>
+    <div id="contenidoCarrito">
+        <!-- Aqui se agrega la lista del carrito mediante javascript -->
+    </div>
+    <p class="precio-total">Subtotal: <i id="subtotal-compra" class="fas fa-dollar-sign">0</i></p>
+    <div class="botonesModal">
+        <button id="btn-vaciar" class="btn-agregar btn-modal">Vaciar Carrito</button>
+        <button id="btn-comprar" class="btn-agregar btn-modal">Comprar</button>
+    </div>
+`;
+
+ventanaModal.appendChild(div);
+
+const modalCompra = document.createElement('div');
+modalCompra.className = 'modalCarrito carrito-show';
+modalCompra.innerHTML = `
+    <div class="titulo-carrito">
+        <h3>Compra a realizar</h3>
+    </div>
+    <hr>
+    <h3> Seleccionar medio de pago:</h3>
+    <div>
+    <i class="fas fa-money-check-alt">Pago Virtual</i>
+    <i class="fas fa-credit-card">Tarjeta de crédito</i>
+    </div>
+    <p class="precio-total">Precio total: <i id="total-compra" class="fas fa-dollar-sign">0</i></p>
+    <div class="botonesModal">
+        <button id="btn-volver" class="btn-agregar btn-modal">Volver</button>
+        <button id="btn-fincompra" class="btn-agregar btn-modal">Finalizar Compra</button>
+    </div>
+    `;
+
+ventanaModal.appendChild(modalCompra);
+
+
+//Boton Vaciar Carrito.
+const btnVaciar = document.getElementById('btn-vaciar');
+btnVaciar.addEventListener('click', vaciarCarrito);
+
+
+//Boton Comprar.
+const btnComprar = document.getElementById('btn-comprar');
+btnComprar.addEventListener('click', () => {
+    div.classList.toggle('carrito-show');
+    modalCompra.classList.toggle('carrito-show');
+});
+
+//Boton Volver.
+const btnVolver = document.getElementById('btn-volver');
+btnVolver.addEventListener('click', () => {
+    div.classList.toggle('carrito-show');
+    modalCompra.classList.toggle('carrito-show');
+});
+
+
+
+// MOSTRAR PRODUCTOS EN PANTALLA: Recorro el array y por cada objeto pinto la card dentro del main html.
 const contenedor = document.getElementById('contProductos');
 const modal = document.getElementById('contenidoCarrito');
 
-// MOSTRAR PRODUCTOS EN PANTALLA: Recorro el array y por cada objeto pinto la card dentro del main html.
 listaProductos.forEach((producto) => {
     let {
         id,
@@ -38,7 +111,7 @@ listaProductos.forEach((producto) => {
             <button id="agregar${id}" class="btn-agregar">Agregar al Carrito</button>
         </div>
     </div>
-    `
+    `;
     // Asigno el div que cree como hijo del elemento 'contenedor' (contProducts).
     contenedor.appendChild(div);
 
@@ -46,10 +119,9 @@ listaProductos.forEach((producto) => {
     const btnAgregar = document.getElementById(`agregar${id}`);
     btnAgregar.addEventListener('click', () => {
         // Llamo a la función agregarAlCarrito.
-        agregarAlCarrito(id)
+        agregarAlCarrito(id);
     });
 });
-
 
 // RECUPERAR DATOS DE STORAGE. Si storage tiene algo
 if (localStorage.getItem('carrito') !== null) {
@@ -58,18 +130,3 @@ if (localStorage.getItem('carrito') !== null) {
     contadorCarrito();
     calcularSubTotal();
 };
-
-
-// ACCIONES DEL MODAL CARRITO:
-
-//Muestra y oculta el modal Carrito.
-const btnModal = document.getElementById('btn-carrito');
-const ventanaModal = document.getElementById('modal');
-
-btnModal.addEventListener('click', () => {
-    ventanaModal.classList.toggle('modal-show'); // toggle intercambia entre clases.
-});
-
-//Vaciar el modal Carrito.
-const btnVaciar = document.getElementById('btn-vaciar');
-btnVaciar.addEventListener('click', vaciarCarrito);
