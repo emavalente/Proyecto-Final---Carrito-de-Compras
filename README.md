@@ -1,8 +1,8 @@
 ## 🙋 Este es el proyecto final para el curso Javascript de CODERHOUSE.
 
-Se trata de un sistema simple de carrito de compras donde el usuario 👤 podra:
+Se trata de un sistema simple de carrito de compras donde el usuario 👤 podrá:
 
-👨🏽‍💻 
+👨🏽‍💻
 - Agregar productos al carrito.
 - Eliminar productos del carrito.
 - Calcular el Total a pagar.

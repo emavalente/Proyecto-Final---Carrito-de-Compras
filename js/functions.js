@@ -16,7 +16,7 @@ const agregarAlCarrito = (id) => {
         // Agrega el item nuevo al array del carrito y sumo 1 a la cantidad del producto.
         listaCarrito.push(item);
         itemCarrito = listaCarrito.find((producto) => producto.id === id);
-        itemCarrito.cantidad++;
+        itemCarrito.cantidad = 1;
         // Muestro el item en el modal.
         mostrarEnCarrito();
     };
@@ -130,6 +130,7 @@ const vaciarCarrito = () => {
         calcularSubTotal();
         // Limpio el localStorage.
         localStorage.clear();
+        //Muestro mensaje de listo.
         Swal.fire({
             title: 'Vaciaste el Carrito',
             text: 'Todos tus productos se han quitado',
@@ -140,6 +141,7 @@ const vaciarCarrito = () => {
         })
         console.log(listaCarrito);
     } else {
+        // Muestro mensaje de advertencia.
         Swal.fire({
             title: 'Atención',
             text: 'El carrito no contiene productos',
