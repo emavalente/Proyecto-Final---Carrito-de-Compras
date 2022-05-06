@@ -1,5 +1,12 @@
-// DECLARACION DE VARIABLES.
+window.addEventListener('load', () => {
+    const loader = document.getElementById('loader');
+    setTimeout(() => {
+        loader.classList.toggle('loaderExit');
+    }, 3000);
+    
 
+
+// DECLARACION DE VARIABLES.
 let listaCarrito = [];
 let contador = 0;
 let subTotal = 0;
@@ -130,8 +137,6 @@ fetch('./productos.json')
 });
 
 
-
-
 // RECUPERAR DATOS DE STORAGE. Si storage tiene algo
 if (localStorage.getItem('carrito') !== null) {
     recuperarCarrito();
@@ -139,3 +144,4 @@ if (localStorage.getItem('carrito') !== null) {
     contadorCarrito();
     calcularSubTotal();
 };
+});
