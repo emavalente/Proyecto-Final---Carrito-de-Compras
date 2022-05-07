@@ -1,17 +1,17 @@
+// DECLARACION DE VARIABLES.
+let listaCarrito = [];
+let contador = 0;
+let subTotal = 0;
+let nubeCarrito;
+let nubeRecuperada;
+let listaProductos = [];
+
 window.addEventListener('load', () => {
     const loader = document.getElementById('loader');
     console.log(loader);
     setTimeout(() => {
         loader.classList.toggle('loaderExit');
     }, 3000);
-
-    // DECLARACION DE VARIABLES.
-    let listaCarrito = [];
-    let contador = 0;
-    let subTotal = 0;
-    let nubeCarrito;
-    let nubeRecuperada;
-    let listaProductos = [];
 
     // ACCIONES DEL MODAL CARRITO:
     const btnModal = document.getElementById('btn-carrito');
