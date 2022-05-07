@@ -74,7 +74,7 @@ button i span {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
+    position: fixed;
     z-index: 100;
     clip-path: circle(141.2% at 100% 0);
     transition: clip-path 0.5s ease-in-out;
@@ -94,7 +94,7 @@ button i span {
     height: 64px;
     margin: 8px;
     border-radius: 50%;
-    background-image: url("/img/Logo/logo_elefante_256x256.png");
+    background-image: url("./img/Logo/logo_elefante_256x256.png");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
