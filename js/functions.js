@@ -170,3 +170,4 @@ const recuperarCarrito = () => {
     console.log(nubeRecuperada);
     listaCarrito = JSON.parse(nubeRecuperada);
 };
+
