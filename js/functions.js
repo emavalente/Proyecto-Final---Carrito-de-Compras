@@ -15,6 +15,7 @@ const agregarAlCarrito = (id) => {
     } else {
         // Agrega el item nuevo al array del carrito y sumo 1 a la cantidad del producto.
         listaCarrito.push(item);
+        // Busco el producto que se agrego en la listaCarrito y pongo su cantidad en 1.
         itemCarrito = listaCarrito.find((producto) => producto.id === id);
         itemCarrito.cantidad = 1;
         // Muestro el item en el modal.
@@ -24,9 +25,8 @@ const agregarAlCarrito = (id) => {
     contadorCarrito();
     calcularSubTotal();
     guardarCarrito()
-    console.log(listaCarrito);
-    console.log(listaProductos);
 };
+
 
 // Creo una función que cuenta la cantidad de items agregados al carrito.
 const contadorCarrito = () => {
@@ -35,6 +35,7 @@ const contadorCarrito = () => {
     contador = listaCarrito.reduce((acc, el) => acc + el.cantidad, 0);
     contadorItems.innerText = contador;
 };
+
 
 // Creo una Funcion para mostrar los items que existen en el array del carrito dentro del modal.
 const mostrarEnCarrito = () => {
@@ -78,6 +79,7 @@ const mostrarEnCarrito = () => {
     });
 };
 
+
 // Creo una función eliminarDelCarrito que busca el producto por su id y lo elimina del array del carrito.
 const eliminarDelCarrito = (id) => {
     let item = listaCarrito.find((producto) => producto.id === id);
@@ -100,6 +102,7 @@ const eliminarDelCarrito = (id) => {
     guardarCarrito();
 };
 
+
 // Creo una función que actualiza el carrito de ser necesario.
 const actualizarCarrito = () => {
     modal.innerHTML = ``;
@@ -108,6 +111,7 @@ const actualizarCarrito = () => {
     });
 };
 
+
 // Creo una función que calcula el costo total del carrito. FALTA ESTO!
 const calcularSubTotal = () => {
     subTotal = listaCarrito.reduce((acc, el) => acc + (el.cantidad * el.precio), 0);
@@ -115,6 +119,7 @@ const calcularSubTotal = () => {
     const totalModal = document.getElementById('subtotal-compra');
     totalModal.innerText = subTotal;
 };
+
 
 // Creo una función para vaciar el carrito.
 const vaciarCarrito = () => {
@@ -159,6 +164,7 @@ const guardarCarrito = () => {
     nubeCarrito = JSON.stringify(listaCarrito);
     localStorage.setItem('carrito', nubeCarrito);
 };
+
 
 // Creo una función que recupera los datos del Storage.
 const recuperarCarrito = () => {
