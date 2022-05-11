@@ -334,27 +334,33 @@ hr {
   margin: 20px;
 }
 
-.carrito-show {
+.carrito-hide {
   display: none;
 }
 
+/* Formularios de Compra */
 .modal .subtitulo {
-  margin-top: 20px;
+  margin-top: 10px;
   font-family: "Roboto";
   font-size: 16px;
 }
 
-.modal .opciones {
+.modal .opcionesEnvio {
   width: 100%;
-  padding: 20px;
+  display: flex;
+  justify-content: center;
   margin-bottom: 30px;
+}
+.modal .opcionesPago {
+  width: 100%;
+  margin-bottom: 15px;
   display: flex;
   flex-direction: column;
-  align-items: left;
+  align-items: center;
 }
 
-.opciones .opcion {
-  margin: 10px;
+.opcionesPago .opcion {
+  width: 80%;
   display: flex;
   align-items: center;
 }
@@ -363,9 +369,10 @@ hr {
   margin: 5px;
 }
 
-.opcion .icono {
+.icono {
   font-size: 2rem;
   color: #333332;
+  margin: 10px;
 }
 
 .icono span {

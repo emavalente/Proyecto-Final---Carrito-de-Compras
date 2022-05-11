@@ -39,30 +39,41 @@ div.innerHTML = `
      <button id="btn-comprar" class="btn-agregar btn-modal">Comprar</button>
  </div>
 `;
-
 ventanaModal.appendChild(div);
 
 const modalCompra = document.createElement("div");
-modalCompra.className = "modalCarrito carrito-show";
+modalCompra.className = "modalCarrito carrito-hide";
 modalCompra.innerHTML = `
   <div class="titulo-carrito">
     <h3>Compra a realizar</h3>
   </div>
   <hr>
-  <h3 class="subtitulo"> Seleccionar medio de pago:</h3>
-  <form class="opciones">
+  <i class="fa-solid fa-truck-fast icono"></i>
+  <form class="opcionesEnvio">
+      <select id="menu-envio" class"menu-envio" name="envios">
+        <option disabled selected>-- Seleccione tipo de envio --</option>
+        <option value="350">Provincia Bs. As.</option>
+        <option value="700">Interior del pais</option>
+      </select>
+    <div id="datos-envio" class="datos-envio">
+    </div>
+  </form>
+
+  <h3 class="subtitulo">¿Cómo quieres pagar?</h3>
+  <hr>
+  <form class="opcionesPago">
     <label class="opcion">
-      <input type="radio" name="opciones" class="radio" id="opcion1" checked>
+      <input type="radio" name="pagos" class="radio" id="pago1" checked>
       <i class="fas fa-money-check-alt icono"><span>Pago Virtual</span></i>
     </label>
     <label class="opcion">
-      <input type="radio" name="opciones" class="radio" id="opcion2">
+      <input type="radio" name="pagos" class="radio" id="pago2">
       <i class="fas fa-credit-card icono"><span>Tarjeta de crédito</span></i>
     </label>
   </form>
   <hr>
-  <h3 class="subtitulo">Seleccionar Envio</h3>
-  <p class="precio-total">Precio total: <i id="total-compra" class="fas fa-dollar-sign">0</i></p>
+  
+  <p class="precio-total">Total a pagar: <i id="total-compra" class="fas fa-dollar-sign">0</i></p>
   <div class="botonesModal">
     <button id="btn-volver" class="btn-agregar btn-modal">Volver</button>
     <button id="btn-fincompra" class="btn-agregar btn-modal">Finalizar Compra</button>
@@ -77,15 +88,15 @@ btnVaciar.addEventListener("click", vaciarCarrito);
 //Boton Comprar.
 const btnComprar = document.getElementById("btn-comprar");
 btnComprar.addEventListener("click", () => {
-  div.classList.toggle("carrito-show");
-  modalCompra.classList.toggle("carrito-show");
+  div.classList.toggle("carrito-hide");
+  modalCompra.classList.toggle("carrito-hide");
 });
 
 //Boton Volver.
 const btnVolver = document.getElementById("btn-volver");
 btnVolver.addEventListener("click", () => {
-  div.classList.toggle("carrito-show");
-  modalCompra.classList.toggle("carrito-show");
+  div.classList.toggle("carrito-hide");
+  modalCompra.classList.toggle("carrito-hide");
 });
 
 // MOSTRAR PRODUCTOS EN PANTALLA: Utilizo fetch para llamar al archivo .json y por cada objeto pinto la card dentro del main html.
