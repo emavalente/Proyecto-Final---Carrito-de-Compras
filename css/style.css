@@ -1,359 +1,531 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    background-color: #c7c7c7;
+  background-color: #c7c7c7;
 }
 
+/* Estilos del Loading */
+.loader {
+  background-color: #fafafa;
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  z-index: 1000;
+  clip-path: circle(150% at 100% 0);
+  transition: clip-path 0.5s ease-in-out;
+}
+
+.loaderExit {
+  clip-path: circle(0% at 100% 0);
+}
+
+.lds-facebook {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Roboto", sans-serif;
+}
+
+.center {
+  width: 80px;
+  height: 80px;
+  position: relative;
+}
+
+.lds-facebook .div1,
+.div2,
+.div3 {
+  display: inline-block;
+  position: absolute;
+  left: 8px;
+  width: 16px;
+  background-color: rgb(214, 49, 118);
+  animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+}
+
+.lds-facebook .div1 {
+  left: 8px;
+  animation-delay: -0.24s;
+}
+
+.lds-facebook .div2 {
+  left: 32px;
+  animation-delay: -0.12s;
+}
+
+.lds-facebook .div3 {
+  left: 56px;
+  animation-delay: 0;
+}
+
+@keyframes lds-facebook {
+  0% {
+    top: 8px;
+    height: 64px;
+  }
+
+  50%,
+  100% {
+    top: 24px;
+    height: 32px;
+  }
+}
+
+/* Estilos del Navbar */
 header {
-    height: 70px;
+  height: 70px;
 }
 
 nav {
-    background-color: rgb(250, 213, 6);
-    width: 100%;
-    height: 70px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    position: fixed;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    z-index: 1;
+  background-color: rgb(250, 213, 6);
+  width: 100%;
+  height: 70px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  z-index: 1;
+  box-shadow: 5px 15px 30px rgba(51, 52, 63, 0.3);
 }
 
 nav h1 {
-    font-size: clamp(0.5rem, 4vw, 1.8rem);
+  font-size: clamp(0.5rem, 4vw, 1.8rem);
 }
 
 nav .branch {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 nav .branch .logo {
-    width: 60px;
-    margin: 0px 20px;
+  width: 60px;
+  margin: 0px 20px;
 }
 
 nav div button {
-    border: none;
-    background-color: transparent;
-    width: 40px;
-    height: 40px;
-    margin: 30px;
-    text-align: center;
-    cursor: pointer;
-    position: relative;
+  border: none;
+  background-color: transparent;
+  width: 40px;
+  height: 40px;
+  margin: 30px;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
 }
 
 button i {
-    font-size: 1.5rem;
-    transition: all 0.3s;
+  font-size: 1.5rem;
+  transition: all 0.3s;
 }
-
 
 button i span {
-    padding: 3px;
-    background-color: #ffffff;
-    border-radius: 50%;
-    font-size: 10px;
-    color: #000;
-    position: absolute;
-    top: 0;
-    right: 1px;
+  padding: 3px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  font-size: 10px;
+  color: #000;
+  position: absolute;
+  top: 0;
+  right: 1px;
 }
 
-/* Estilo Tarjetas */
-
+/* Estilos de Tarjetas */
 .wrapper {
-    min-height: 100vh;
-    width: 100%;
-    /* background-color: #f3f3f3; */
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Raleway', sans-serif;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  font-family: "Raleway", sans-serif;
 }
 
 .product {
-    width: 90%;
-    max-width: 500px;
-    height: auto;
-    background-color: #fafafa;
-    padding: 15px;
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 20px 15px;
-    border: 1px solid rgba(95, 66, 66, 0.3);
-    border-radius: 5px;
-    box-shadow: 5px 15px 30px rgba(78, 95, 248, 0.3);
-    transition: linear-gradient 1s ease;
+  width: 90%;
+  max-width: 500px;
+  height: auto;
+  background-color: #fafafa;
+  padding: 15px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 15px;
+  border: 1px solid rgba(95, 66, 66, 0.3);
+  border-radius: 5px;
+  box-shadow: 5px 15px 30px rgba(78, 95, 248, 0.3);
+  transition: linear-gradient 1s ease;
 }
 
 .product span {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    padding: 3px 10px;
-    border-radius: 4px;
-    background-color: rgb(214, 49, 118);
-    color: #fff;
-    font-size: clamp(0.3rem, 2vw, 0.7rem);
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  padding: 3px 10px;
+  border-radius: 4px;
+  background-color: rgb(214, 49, 118);
+  color: #fff;
+  font-size: clamp(0.3rem, 2vw, 0.7rem);
 }
 
 .product .prod-image {
-    flex-basis: 40%;
-    height: 95%;
-    display: flex;
-    align-items: center;
-    justify-content: left;
-
+  flex-basis: 40%;
+  height: 95%;
+  display: flex;
+  align-items: center;
+  justify-content: left;
 }
 
 .prod-image img {
-    width: 70%;
-    /* margin: 15px; */
-    transition: 0.3s ease;
-    text-align: center;
+  width: 70%;
+  transition: 0.3s ease;
+  text-align: center;
 }
 
 .prod-image:hover img {
-    transform: translateY(-10px);
+  transform: translateY(-10px);
 }
 
 .product .prod-details {
-    flex-basis: 60%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
+  flex-basis: 60%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
 .product .prod-details h1 {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 900;
-    font-size: clamp(1rem, 4vw, 1.5rem);
-
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-size: clamp(1rem, 4vw, 1.5rem);
 }
 
 .product .prod-details p {
-    margin-bottom: 15px;
-    font-size: clamp(0.6rem, 3vw, 0.8rem);
+  margin-bottom: 15px;
+  font-size: clamp(0.6rem, 3vw, 0.8rem);
 }
 
 .product .prod-details h4 i {
-    font-family: 'Roboto', sans-serif;
-    font-size: clamp(1rem, 3vw, 1.5rem);
-    font-weight: 900;
-    margin: 15px 0px;
+  font-family: "Roboto", sans-serif;
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  font-weight: 900;
+  margin: 15px 0px;
 }
 
 .btn-agregar {
-    color: rgb(214, 49, 118);
-    background-color: transparent;
-    border: 1px solid rgb(214, 49, 118);
-    border-radius: 5px;
-    padding: 5px 18px;
-    font-size: 14px;
-    cursor: pointer;
+  color: rgb(214, 49, 118);
+  background-color: transparent;
+  border: 1px solid rgb(214, 49, 118);
+  border-radius: 5px;
+  padding: 5px 18px;
+  font-size: 14px;
+  cursor: pointer;
 }
 
-/* Estilo del modal */
-
+/* Estilos del modal */
 .modal {
-    width: 100vw;
-    max-width: 500px;
-    height: 0;
-    background-color: rgb(250, 250, 250, 0.9);
-    border-bottom-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    position: fixed;
-    top: 70px;
-    right: 0px;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow: auto;
-    transition: height 0.2s linear;
+  width: 100vw;
+  max-width: 500px;
+  height: 0;
+  background-color: rgb(250, 250, 250, 0.9);
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  position: fixed;
+  top: 70px;
+  right: 0px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: auto;
+  transition: height 0.2s linear;
 }
 
 .modal-show {
-    height: 100vh;
-    transition: height 0.2s linear;
+  height: 100vh;
+  transition: height 0.2s linear;
 }
 
 .modalCarrito {
-    width: 90%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .titulo-carrito {
-    display: flex;
-    justify-content: space-around;
-    margin: 10px 0;
-    font-family: 'Raleway', sans-serif;
-    font-size: 1rem;
-    font-weight: 900;
+  display: flex;
+  justify-content: space-around;
+  margin: 10px 0;
+  font-family: "Raleway", sans-serif;
+  font-size: 1rem;
+  font-weight: 900;
 }
 
 hr {
-    margin-bottom: 10px;
-    width: 100%;
+  margin-bottom: 10px;
+  width: 100%;
 }
 
 .contenidoCarrito {
-    overflow: scroll;
+  overflow: scroll;
 }
 
 .item-carrito {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
 .item-carrito .img-item {
-    flex-basis: 20%;
-    display: flex;
-    justify-content: center;
+  flex-basis: 20%;
+  display: flex;
+  justify-content: center;
 }
 
 .item-carrito .img-item img {
-    width: 50%;
+  width: 50%;
 }
 
 .item-carrito .desc-item {
-    margin-right: auto;
-    font-family: 'Roboto', sans-serif;
-    font-size: 0.8rem;
-    font-weight: 300;
-
+  margin-right: auto;
+  font-family: "Roboto", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 300;
 }
 
 .item-carrito .desc-item p i {
-    font-family: 'Roboto', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 900;
+  font-family: "Roboto", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 900;
 }
 
 .item-carrito .btn-item button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 5px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
 }
 
 .item-carrito .btn-item button i {
-    font-size: 30px;
-    font-weight: 600;
-    color: #333232;
+  font-size: 30px;
+  font-weight: 600;
+  color: #333232;
 }
 
 .modal .modalCarrito .precio-total {
-    margin-bottom: 20px;
-    font-family: 'Roboto', sans-serif;
+  margin-bottom: 20px;
+  font-family: "Raleway", sans-serif;
+  font-weight: 900;
 }
 
 .modalCarrito .botonesModal {
-    display: flex;
+  display: flex;
 }
 
 .modalCarrito .botonesModal .btn-modal {
-    width: 50%;
-    margin: 20px;
+  width: 50%;
+  margin: 20px;
 }
 
-.carrito-show {
-    display: none;
+.carrito-hide {
+  display: none;
 }
 
+/* Formularios de Compra del modal*/
+.modal .subtitulo {
+  margin-top: 10px;
+  font-family: "Raleway", sans-serif;
+  font-size: 1rem;
+}
+
+.modal .opcionesEnvio {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.modal .opcionesPago {
+  width: 100%;
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.opcionesPago .pago {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.opcionesPago div .opcion {
+  width: 80%;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+div .opcion .radio {
+  margin: 5px;
+}
+
+.opcionesPago .cuotas-hide {
+  visibility: hidden;
+}
+
+.icono {
+  font-size: 1.8rem;
+  color: #333332;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.icono span {
+  margin-left: 10px;
+  font-size: 0.8rem;
+  color: rgb(214, 49, 118, 1);
+  font-family: "Roboto", sans-serif;
+}
+
+#cuotas {
+  width: 90%;
+  display: flex;
+  justify-content: space-around;
+  font-family: "Roboto", sans-serif;
+  font-size: 0.8rem;
+}
+
+.costos {
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.costo-subtotal,
+.costo-envio {
+  font-family: "Raleway", sans-serif;
+  font-size: 0.8rem;
+  color: #000;
+  margin-bottom: 15px;
+}
+
+#detalle-cuotas {
+  margin-left: 20px;
+  color: rgb(214, 49, 118, 1);
+  font-family: "Roboto", sans-serif;
+  font-size: 0.8rem;
+}
+
+/* Estilos del footer */
 footer {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 50px 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 50px 0;
 }
 
 footer .redes {
-    display: flex;
-    justify-content: space-around;
-    list-style: none;
-    margin-bottom: 30px;
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+  margin-bottom: 30px;
 }
 
 footer .redes li {
-    display: flex;
-    align-items: center;
-    margin: 20px
+  display: flex;
+  align-items: center;
+  margin: 20px;
 }
 
 .redes li img {
-    width: 25px;
+  width: 25px;
 }
 
 .redes li a {
-    text-decoration: none;
-    color: #333232;
-    font-family: 'Roboto';
-    margin-left: 10px;
+  text-decoration: none;
+  color: #333232;
+  font-family: "Roboto", sans-serif;
+  margin-left: 10px;
 }
 
 footer p {
-    color: #333332;
-    font-size: 0.7rem;
-    font-family: 'Raleway', sans-serif;
+  color: #333332;
+  font-size: 0.7rem;
+  font-family: "Raleway", sans-serif;
 }
 
 @media screen and (min-width: 500px) {
+  /* Estilos del Navbar */
+  button:hover i {
+    font-size: 1.8rem;
+    color: rgb(214, 49, 118);
+  }
 
-    button:hover i {
-        font-size: 1.8rem;
-        color: rgb(214, 49, 118);
-    }
+  /* Estilos de Tarjetas */
+  .wrapper {
+    flex-direction: row;
+  }
 
-    .wrapper {
-        flex-direction: row;
-    }
+  .product {
+    height: 250px;
+    transition: all 0.5s;
+  }
 
-    .product {
-        height: 250px;
-        transition: all 0.5s;
-    }
+  .product:hover {
+    background-color: #1d1b1b;
+  }
 
-    .product:hover {
-        background-color: #1d1b1b;
-    }
+  .product:hover p {
+    color: #fff;
+  }
 
-    .product:hover p {
-        color: #fff;
-    }
+  .product:hover i {
+    color: #fff;
+  }
 
-    .product:hover i {
-        color: #fff;
-    }
+  .product:hover h1 {
+    color: rgb(214, 49, 118);
+  }
 
-    .product:hover h1 {
-        color: rgb(214, 49, 118);
-    }
+  .product:hover div button {
+    border: 1px solid #fff;
+    color: #fff;
+  }
 
-    .product:hover div button {
-        border: 1px solid #fff;
-        color: #fff;
-    }
+  .product div btn-agregar {
+    padding: 7px 12px;
+    font-size: 12px;
+  }
 
-    .product div btn-agregar {
-        padding: 7px 12px;
-        font-size: 12px;
-    }
+  /* Estilos del Modal */
+  .modal {
+    box-shadow: 5px 15px 30px rgba(51, 52, 63, 0.9);
+  }
+
+  .modal .opcionesPago {
+    justify-content: space-around;
+  }
+
+  .opcionesPago .opcion {
+    width: 50%;
+    justify-content: center;
+  }
+
+  .costos {
+    width: 70%;
+  }
 }
