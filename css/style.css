@@ -79,14 +79,17 @@ body {
 /* Estilos del Navbar */
 header {
   height: 70px;
+  background-color: rgb(250, 213, 6);
+  display: flex;
+  justify-content: center;
 }
 
 nav {
   background-color: rgb(250, 213, 6);
-  width: 100%;
+  width: 90%;
   height: 70px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   position: fixed;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
