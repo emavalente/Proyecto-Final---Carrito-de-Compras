@@ -9,7 +9,7 @@ Se trata de un sistema simple de carrito de compras donde el usuario 👤 podrá
 - Decidir una forma de pago.
 - Seleccionar envio.
 
-Estado del proyecto: <b>EN PROGRESO</b>.
+Estado del proyecto: <b>TERMINADO</b>.
 
 
 
