@@ -7,7 +7,7 @@ let subTotal = 0;
 let totalCompra = 0;
 let nubeCarrito;
 let nubeRecuperada;
-let cantidadCuotas;
+//let cantidadCuotas;
 
 // LOADING:
 window.addEventListener("load", () => {
@@ -34,7 +34,7 @@ div.innerHTML = `
      <h3>Lista de Productos</h3>
  </div>
  <hr>
- <div id="contenidoCarrito">
+ <div id="contenido-carrito">
      <!-- Aqui se agrega la lista del carrito mediante javascript -->
  </div>
  <p class="precio-total">Subtotal: <i id="subtotal-compra" class="fas fa-dollar-sign">0</i></p>
@@ -134,7 +134,7 @@ btnVolver.addEventListener("click", () => {
 
 // ACCIONES DEL MODAL DE COMPRA.
 
-// Seleccion de Envio.
+//Seleccion de Envio.
 const selEnvio = document.getElementById("menu-envio");
 selEnvio.addEventListener("change", () => {
   calcularTotalCompra();
@@ -142,7 +142,7 @@ selEnvio.addEventListener("change", () => {
   precioEnvio.innerText = costoEnvio.toFixed(2);
 });
 
-// Seleccion de Pago en cuotas.
+//Seleccion de Pago en cuotas.
 const opcionPago = document.getElementsByName("pagos");
 const precioCuotas = document.getElementById("detalle-cuotas");
 
@@ -183,7 +183,7 @@ opcionCuotas.forEach((radio) => {
 
 // MOSTRAR PRODUCTOS EN PANTALLA: Utilizo fetch para llamar al archivo .json y por cada objeto pinto la card dentro del main html.
 const contenedor = document.getElementById("contProductos");
-const modal = document.getElementById("contenidoCarrito");
+const modal = document.getElementById("contenido-carrito");
 
 fetch("./productos.json")
   .then((responce) => responce.json())
@@ -225,11 +225,10 @@ fetch("./productos.json")
   });
 
 // FINALIZAR LA COMPRA.
-
 const btnFinalizar = document.getElementById("btn-fincompra");
 
 btnFinalizar.addEventListener("click", () => {
-  console.log(selEnvio.value);
+  // Validacion de seleccion de envio
   if (selEnvio.value === "0") {
     Swal.fire({
       title: "Ups!",
@@ -238,26 +237,105 @@ btnFinalizar.addEventListener("click", () => {
     });
   } else {
     opcionPago.forEach((radio) => {
+      //Si se selecciona pago virtual
       if (radio.checked && radio.value === "fijo") {
-        Swal.fire({
-          icon: "success",
-          title: "Felicitaciones!",
-          text: "Tu compra a sido exitosa",
-          footer: "Su pago a sido recibido, se enviará su recibo a su correo",
-        });
-        // Reinicio el array del carrito.
-        listaCarrito = [];
-        // Actualizo el modal del carrito.
-        actualizarCarrito();
-        // Reinicio el contador del carrito.
-        contadorCarrito();
-        // Reinicio el subTotal
-        calcularSubTotal();
-        // Limpio el localStorage.
-        localStorage.clear();
-        // Regreso al carrito.
-        div.classList.toggle("carrito-hide");
-        modalCompra.classList.toggle("carrito-hide");
+        (async () => {
+          const { value: email } = await Swal.fire({
+            title: "Ingrese su dirección de email:",
+            input: "email",
+            showCancelButton: true,
+            confirmButtonColor: "#d63176",
+            cancelButtonColor: "#d63176",
+            inputPlaceholder: "ejemplo@email.com",
+          });
+          if (email) {
+            Swal.fire({
+              icon: "success",
+              title: "Felicitaciones!",
+              text: "Tu compra a sido exitosa",
+              confirmButtonColor: "#d63176",
+              footer: "Recibirás el comprobante en " + email,
+              customClass: {
+                htmlContainer: "sweet-alert",
+                container: "sweet-alert_2",
+                footer: "sweet-alert",
+              },
+            });
+            // Reinicio el array del carrito.
+            listaCarrito = [];
+            // Actualizo el modal del carrito.
+            actualizarCarrito();
+            // Reinicio el contador del carrito.
+            contadorCarrito();
+            // Reinicio el subTotal
+            calcularSubTotal();
+            // Limpio el localStorage.
+            localStorage.clear();
+            // Regreso al carrito.
+            div.classList.toggle("carrito-hide");
+            modalCompra.classList.toggle("carrito-hide");
+          }
+        })();
+
+        // Si se selecciona pago con tarjeta
+      } else if (radio.checked && radio.value === "cuotas") {
+        (async () => {
+          const { value: formValues } = await Swal.fire({
+            title: "Ingrese datos de tarjeta",
+            showCancelButton: true,
+            confirmButtonColor: "#d63176",
+            cancelButtonColor: "#d63176",
+            html: `
+              <form class="registro">
+                  <label>Nº Tarjeta<input id="num-tarjeta" type="number" class="swal2-input" placeholder="XXXX-XXXXXX" required></label>
+                  <label>Vencimiento<input id="num-expired" type="date" class="swal2-input" required></label>
+                  <label>Nombre Titular<input id="name-us" type="text" class="swal2-input" placeholder="como figura en tarjeta" required></label>
+                  <label>E-mail<input id="email-us" type="email" class="swal2-input" placeholder="ejemplo@mail.com" required></label>
+              </form>
+             `,
+            focusConfirm: false,
+            preConfirm: () => {
+              return [document.getElementById("num-tarjeta").value, document.getElementById("num-expired").value, document.getElementById("name-us").value, document.getElementById("email-us").value];
+            },
+          });
+          console.log(formValues);
+          if (formValues.includes("")) {
+            Swal.fire({
+              title: "Ups!",
+              text: "Datos sin completar",
+              icon: "warning",
+              showConfirmButton: false,
+              footer: "Debes completar todos los datos, intenta nuevamente",
+              timer: "3000",
+            });
+          } else {
+            Swal.fire({
+              icon: "success",
+              title: "Felicitaciones!",
+              text: "Tu compra a sido exitosa",
+              confirmButtonColor: "#d63176",
+              footer: "Recibirás el comprobante en " + document.getElementById("email-us").value,
+              customClass: {
+                htmlContainer: "sweet-alert",
+                container: "sweet-alert_2",
+                footer: "sweet-alert",
+              },
+            });
+            // Reinicio el array del carrito.
+            listaCarrito = [];
+            // Actualizo el modal del carrito.
+            actualizarCarrito();
+            // Reinicio el contador del carrito.
+            contadorCarrito();
+            // Reinicio el subTotal
+            calcularSubTotal();
+            // Limpio el localStorage.
+            localStorage.clear();
+            // Regreso al carrito.
+            div.classList.toggle("carrito-hide");
+            modalCompra.classList.toggle("carrito-hide");
+          }
+        })();
       }
     });
   }

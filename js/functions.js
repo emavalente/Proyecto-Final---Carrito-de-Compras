@@ -19,9 +19,10 @@ const agregarAlCarrito = (id) => {
     // Muestro el item en el modal.
     mostrarEnCarrito();
   }
-  // Muestro la cantidad de productos.
+  // Muestro la cantidad de productos y resuelvo calculos para el modal.
   contadorCarrito();
   calcularSubTotal();
+  calcularTotalCompra();
   guardarCarrito();
 };
 
@@ -146,13 +147,14 @@ const vaciarCarrito = () => {
       backdrop: true,
       allowOutsideClick: false,
       confirmButtonText: "OK",
+      confirmButtonColor: "#d63176",
     });
     console.log(listaCarrito);
   } else {
     // Muestro mensaje de advertencia.
     Swal.fire({
-      title: "Atención",
-      text: "El carrito no contiene productos",
+      title: "Ups!",
+      text: "El carrito ya está vacío...",
       icon: "warning",
       showConfirmButton: false,
       timer: "3000",

@@ -19,10 +19,6 @@ body {
   transition: clip-path 0.5s ease-in-out;
 }
 
-.loaderExit {
-  clip-path: circle(0% at 100% 0);
-}
-
 .lds-facebook {
   display: flex;
   flex-direction: column;
@@ -31,15 +27,15 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
-.center {
+.centerLoading {
   width: 80px;
   height: 80px;
   position: relative;
 }
 
-.lds-facebook .div1,
-.div2,
-.div3 {
+.lds-facebook .barraLoad1,
+.barraLoad2,
+.barraLoad3 {
   display: inline-block;
   position: absolute;
   left: 8px;
@@ -48,17 +44,17 @@ body {
   animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
 }
 
-.lds-facebook .div1 {
+.lds-facebook .barraLoad1 {
   left: 8px;
   animation-delay: -0.24s;
 }
 
-.lds-facebook .div2 {
+.lds-facebook .barraLoad2 {
   left: 32px;
   animation-delay: -0.12s;
 }
 
-.lds-facebook .div3 {
+.lds-facebook .barraLoad3 {
   left: 56px;
   animation-delay: 0;
 }
@@ -74,6 +70,10 @@ body {
     top: 24px;
     height: 32px;
   }
+}
+
+.loaderExit {
+  clip-path: circle(0% at 100% 0);
 }
 
 /* Estilos del Navbar */
@@ -108,7 +108,7 @@ nav .branch .logo {
   margin: 0px 20px;
 }
 
-nav div button {
+nav div #btn-carrito {
   border: none;
   background-color: transparent;
   width: 40px;
@@ -119,12 +119,12 @@ nav div button {
   position: relative;
 }
 
-button i {
+#btn-carrito i {
   font-size: 1.5rem;
   transition: all 0.3s;
 }
 
-button i span {
+#btn-carrito i span {
   padding: 3px;
   background-color: #ffffff;
   border-radius: 50%;
@@ -136,7 +136,7 @@ button i span {
 }
 
 /* Estilos de Tarjetas */
-.wrapper {
+.contProductos {
   min-height: 100vh;
   width: 100%;
   display: flex;
@@ -226,6 +226,11 @@ button i span {
   padding: 5px 18px;
   font-size: 14px;
   cursor: pointer;
+  transition: transform 0.1s;
+}
+
+.btn-agregar:active {
+  transform: scale(0.9);
 }
 
 /* Estilos del modal */
@@ -273,7 +278,7 @@ hr {
   width: 100%;
 }
 
-.contenidoCarrito {
+.contenido-carrito {
   overflow: scroll;
 }
 
@@ -312,6 +317,11 @@ hr {
   border: none;
   cursor: pointer;
   padding: 5px;
+  transition: transform 0.1s ease;
+}
+
+.item-carrito .btn-item button:active {
+  transform: scale(0.9);
 }
 
 .item-carrito .btn-item button i {
@@ -423,7 +433,31 @@ div .opcion .radio {
 
 #detalle-cuotas {
   margin-left: 20px;
-  color: rgb(214, 49, 118, 1);
+  color: #d63176;
+  font-family: "Roboto", sans-serif;
+  font-size: 0.8rem;
+}
+
+/* Estilo del Sewetlert */
+.swal2-html-container {
+  font-family: "Raleway", sans-serif;
+}
+
+.swal2-footer {
+  font-family: "Raleway", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.swal2-title {
+  font-family: "Roboto", sans-serif;
+}
+
+.registro {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
   font-family: "Roboto", sans-serif;
   font-size: 0.8rem;
 }
@@ -468,7 +502,7 @@ footer p {
   font-family: "Raleway", sans-serif;
 }
 
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 514px) {
   /* Estilos del Navbar */
   button:hover i {
     font-size: 1.8rem;
@@ -476,7 +510,7 @@ footer p {
   }
 
   /* Estilos de Tarjetas */
-  .wrapper {
+  .contProductos {
     flex-direction: row;
   }
 
