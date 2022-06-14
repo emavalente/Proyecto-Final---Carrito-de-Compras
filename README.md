@@ -10,6 +10,7 @@ Se trata de un sistema simple de carrito de compras donde el usuario 👤 podrá
 - Seleccionar envio.
 
 Estado del proyecto: <b>TERMINADO</b>.
+</br>
 <img width='50%' src='https://i.postimg.cc/FHpfCGPG/cluster-cart.png' >
 
 
